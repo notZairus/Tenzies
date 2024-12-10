@@ -6,9 +6,7 @@ import ShuffleButton from "./ShuffleButton.jsx";
 
 export default function MainGame() {
 
-  const [dice, setDice] = useState(getInitialDice());
-
-  function getInitialDice() {
+  const [dice, setDice] = useState((() => {
     let arr = [];
     for (let i = 0; i < 10; i++) {
       arr.push({
@@ -18,26 +16,22 @@ export default function MainGame() {
       })
     }
     return arr;
-  }
+  })());
 
   function pauseDice(id) {
-    let mapped = dice.map(dice => {
-      if (dice.id == id) {
-        dice.paused = !dice.paused;
-        return dice;
-      } 
-      return dice;
-    });
-    setDice(mapped);
-  }
+    setDice(prevDice => (
+      prevDice.map(dicee => {
+        return dicee.id == id ? {...dicee, paused: !dicee.paused} : dicee;
+      })
+    )
+  )}
 
   function shuffleDice() {
-    setDice(prevDice => {
-      let newDices = prevDice.map(singleDice => {
+    setDice(prevDice => (
+      prevDice.map(singleDice => {
         return singleDice.paused ? singleDice : {...singleDice, value: Math.floor(Math.random() * 9) + 1}
       })
-      return newDices;
-    })
+    ))
   }
 
   return (
