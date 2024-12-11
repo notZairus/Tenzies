@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import DiceContainer from "./DiceContainer.jsx";
 import ShuffleButton from "./ShuffleButton.jsx";
+import confetti from "canvas-confetti";
 
 
 
@@ -9,10 +10,13 @@ export default function MainGame() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [dice, setDice] = useState(getInitialDice());
 
-  isGameOver && alert('Game Over');
-
   useEffect(() => {
     if (checkGameOver() && !isGameOver) {
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.3 } // Start slightly below the top
+      });
       setIsGameOver(true);
     }
   }, [dice]);
