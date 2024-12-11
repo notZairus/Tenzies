@@ -6,7 +6,6 @@ export default function DiceContainer({ dice, pauseDice}) {
   let dices = dice.map((diceElement, index) => (
     <Dice key={`key${index}`} handleClick={() => pauseDice(index + 1) } dicee={diceElement}/>
   ))
-  
 
   return (
     <> 
