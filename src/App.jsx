@@ -5,7 +5,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='w-full h-full bg-slate-700 flex items-center justify-center'>
+    <div className='w-full min-h-full bg-slate-700 flex items-center justify-center flex-col space-y-4'>
       <MainGame />
     </div>
   );

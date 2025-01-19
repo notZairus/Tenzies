@@ -34,12 +34,12 @@ export default function MainGame() {
   };
 
   function checkGameOver() {
-    return (dice.every(dicee => {
+    return dice.every(dicee => {
       if (dicee.paused && dicee.value == dice[0].value) {
         return true;
       }
       return false;
-    }))
+    })
   }
     
   function pauseDice(id) {
@@ -68,11 +68,12 @@ export default function MainGame() {
   }
 
   return (
-    <main className='text-black w-1/2 bg-white rounded-lg flex flex-col items-center py-8 px-12'>
+    <main className='text-black w-1/2 bg-white rounded-lg flex flex-col items-center py-8 px-12 mt-4 my-8'>
       <h1 className="text-5xl font-semibold">Tenzies</h1>
       <p className="text-center text-2xl mt-6">Roll until all dice are same. Click each die to freeze it at it's current value between rolls</p>
       <DiceContainer dice={dice} pauseDice={pauseDice} />
       <ShuffleButton shuffleDice={shuffleDice} isGameOver={isGameOver}/>
+      <footer className="mt-8">Developer: Zairus V. Bermillo</footer>
     </main>
   );
 }
